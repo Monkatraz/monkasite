@@ -1,0 +1,65 @@
+// main: base.sass
+
+.social
+  position: relative
+  display: inline-block
+  padding: 0.1em 0.2em
+  font-size: 200%
+  background: $col-back2
+  border-radius: 10px
+  cursor: default
+
+  a, i
+    color: $col-text-low
+    outline: none
+
+    &:focus
+      text-shadow: 0px 0px 2px $col-text
+  i
+    padding: 0 0.2em
+    cursor: pointer
+    transition: text-shadow 0.2s, color 0.2s
+
+    &:hover, &:focus
+      color: $col-text
+      text-shadow: 0px 0px 2px $col-text
+
+    &:active
+      color: $col-text * 0.9
+      text-shadow: 0px 0px 3px $col-text
+      transition: none
+
+  .fa-discord
+    position: relative
+    &:focus, &:focus-within
+      .social_discord_text
+        opacity: 1
+
+.social_discord_text
+  position: absolute
+  bottom: -1.5em
+  left: 50%
+  display: block
+  padding: 0.25em 0.5em
+  color: $col-text
+  font-size: 0.6em
+  font-family: $font-header
+  text-shadow: none
+  background: $col-gray
+  border-radius: 10px
+  transform: translateX(-50%)
+  cursor: text
+  opacity: 0
+  transition: 0.2s ease
+
+  &::after
+    position: absolute
+    bottom: 100%
+    left: 50%
+    border-color: transparent transparent $col-gray transparent
+    border-style: solid
+    border-width: 15px
+    border-bottom-width: 15px
+    transform: translateX(-50%)
+    content: ""
+    pointer-events: none

@@ -1,0 +1,58 @@
+// main: base.sass
+
+[data-tip]
+  position: relative
+  color: $col-text-focus
+  border-bottom: 2px solid
+  border-image-source: linear-gradient(90deg, rgba(226,226,226,0) 0%, $col-text-focus 1%, $col-text-focus 99%, rgba(255,255,255,0) 100%)
+  border-image-slice: 1
+  outline: none
+  cursor: help
+  transition: text-shadow 0.2s
+
+  &::after
+    position: absolute
+    bottom: 10%
+    left: 50%
+    border-color: $col-back2 transparent transparent transparent
+    border-style: solid
+    border-width: 15px
+    border-bottom-width: 15px
+    transform: translateX(-50%)
+    opacity: 0
+    transition: opacity 0.3s 0.1s
+    content: ""
+    pointer-events: none
+
+  &::before
+    position: absolute
+    bottom: 155%
+    left: 50%
+    width: max-content
+    max-width: 400px
+    padding: 0.5em 1em
+    color: $col-text
+    font-size: 0.95em
+    font-family: $font-body
+    text-shadow: none
+    background: $col-back2
+    border-radius: 5px
+    //box-shadow: inset 0px 0px 10px -5px black
+    transform: translateX(-50%)
+    cursor: text
+    opacity: 0
+    transition: opacity 0.3s 0.1s
+    content: attr(data-tip)
+    pointer-events: none
+
+  &:hover, &:focus, &:focus-within
+    &::before, &::after
+      opacity: 1
+      transition: opacity 0.2s 0.5s
+
+  &:hover
+    text-shadow: 0px 0px 1px $col-text-focus
+
+  &:focus
+    text-shadow: 0px 0px 4px $col-text-focus
+    cursor: default

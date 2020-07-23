@@ -1,0 +1,34 @@
+// main: base.sass
+$ld-size: 30px
+$ld-offset: 0.1s
+$ld-freq: 0.3s
+$ld-pitch: 15px
+
+@keyframes load-wave
+  0%
+    transform: translateY($ld-pitch)
+  100%
+    transform: translateY($ld-pitch * -1)
+
+.loading
+  position: fixed
+  top: 400px
+  left: 50%
+  transform: translateY(-50%) translateX(-50%)
+  opacity: 0
+  transition: opacity 0.1s
+  pointer-events: none
+  will-change: transform
+  .ld
+    display: inline-block
+    width: $ld-size
+    height: $ld-size
+    margin: 0 $ld-size/6
+    background: $col-text
+    border-radius: 50%
+
+  @for $i from 1 through 3
+    .ld#{$i}
+      animation: load-wave $ld-freq #{($ld-offset * $i) - $ld-offset} infinite alternate ease-in-out
+
+// stylelint eats it if I don't put something here lol

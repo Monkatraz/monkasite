@@ -1,0 +1,59 @@
+// compileCompressed: ../../out/css/style.css, compileNested: _css_human/style.css
+@import "colors"
+@import "fonts"
+
+@import "loading"
+@import "header"
+@import "nav"
+@import "pagecontent"
+@import "tooltip"
+@import "banners"
+@import "social"
+
+*
+  box-sizing: border-box
+
+html
+  height: 100vh
+  scroll-behavior: smooth
+  scrollbar-color: $col-gray $col-back
+  scrollbar-width: thin
+  overflow-x: hidden
+
+body
+  display: flex
+  flex-direction: column
+  min-height: 100%
+  color: $col-text
+  background: $col-back
+
+::selection
+  color: $col-text-focus
+  background: $col-gray
+
+a:link
+  color: $col-low-accent * 2
+
+a:visited
+  color: $col-low-accent * 1.25
+
+h1, h2, h3, h4, h5, h6
+  + hr
+    margin-top: -1em
+
+ul
+  padding-left: 1em
+
+li
+  margin-top: 0.5em
+  //list-style: inside
+
+// Misc. styles and classes
+
+// Secure email thingy (no JS)
+// https://stackoverflow.com/questions/21421948/protect-e-mail-address-with-css-only
+// <span class="e-mail" data-user="nohj" data-website="moc.liamg"></span>
+.e-mail:before
+  direction: rtl
+  unicode-bidi: bidi-override
+  content: "moc.liamg" "\0040" attr(data-user)

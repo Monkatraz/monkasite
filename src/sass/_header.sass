@@ -1,0 +1,52 @@
+// main: base.sass
+
+#header
+  display: flex
+  flex-direction: column
+  align-items: stretch
+  width: 100%
+  padding-top: 1em
+  background: $col-accent
+
+  &.home #header_sitename_text::after
+    transform: translateX(-50%) scaleX(1)
+
+#header_sitename
+  width: max-content
+  margin-bottom: 0.5em
+  margin-left: 3%
+  background: $col-accent
+  border-radius: 5px
+  transition: box-shadow 0.1s
+
+#header_sitename_text
+  position: relative
+  padding: 0 0.5em
+  color: $col-text
+  text-decoration: none
+  outline: none
+  cursor: pointer
+  filter: drop-shadow(0px 0px 1px white)
+  transition: filter 0.25s
+  user-select: none
+
+  &::after
+    position: absolute
+    top: 100%
+    left: 50%
+    display: block
+    width: 90%
+    height: 2px
+    margin: auto
+    background: $col-text-low
+    border-radius: 5px
+    transform: translateX(-50%) scaleX(0)
+    transition: transform 0.1s, opacity 0.1s
+    content: ""
+
+  &:hover
+    filter: drop-shadow(0px 0px 4px gray) drop-shadow(0px 0px 1px white)
+
+  &:active
+    filter: drop-shadow(0px 0px 8px white) drop-shadow(0px 0px 1px white)
+    transition: filter 0s

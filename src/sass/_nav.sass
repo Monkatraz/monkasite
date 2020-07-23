@@ -1,0 +1,78 @@
+// main: base.sass
+
+#nav_links
+  display: flex
+  flex: 1 1 auto
+  align-items: center
+  justify-content: left
+  padding-top: 1em
+  padding-bottom: 1em
+  background: $col-low-accent
+
+#nav_leftbuffer
+  width: 5%
+
+// Keyframes for a keyboard accessibility trick with the nav buttons
+// Select box-shadow will pop up for a moment if focused
+// This animation is designed to blend in with clicking
+@keyframes nav_link_focus
+  0%
+    // Putting nothing here - just need this for the parser
+  50%
+    box-shadow: inset 0em -3em 0px rgba(255,255,255, 0.2)
+  60%
+    // Parser indent!
+  100%
+    // Parser indent!
+
+#header .nav_link
+  position: relative
+  flex-shrink: 0
+  width: max-content
+  min-width: min-content
+  margin-right: 1em
+  padding: 0.25em
+  color: $col-text-low
+  font-size: clamp(0.5em, 2vw, 150%)
+  text-align: center
+  text-decoration: none
+  border-radius: 5px
+  outline: none
+  cursor: pointer
+  transition: background 0.1s, filter 0.1s, box-shadow 0.3s, color 0.1s
+  user-select: none
+
+  &.currentpage
+    color: $col-text
+    text-shadow: 0px 0px 2px $col-text
+
+    &::after
+      transform: translateX(-50%) scaleY(1)
+
+  &:hover
+    color: $col-text
+    box-shadow: inset 0em -3em 0px rgba(255,255,255, 0.2)
+
+  &:active
+    color: white
+    box-shadow: inset 0em -3em 0px rgba(255,255,255, 0.1), inset 0px 0px 4px -2px black
+    filter: brightness(90%)
+    transition: none
+
+  &:focus
+    //color: $col-text-focus
+    text-shadow: 0px 0px 2px $col-text
+    animation: nav_link_focus 1s 1
+
+  &::after
+    position: absolute
+    left: 50%
+    display: block
+    width: 95%
+    height: 3px
+    margin: auto
+    background: $col-text-low
+    border-radius: 5px
+    transform: translateX(-50%) scaleY(0)
+    transition: transform 0.1s
+    content: ""
