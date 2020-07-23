@@ -15,7 +15,7 @@ function setClass(id, className){
 const fetchSettings = {}
 
 function grabPageContent(page){
-  fetch('fetch' + page, fetchSettings)
+  fetch(page.replace('page','fetch'), fetchSettings)
     .then(data => data.text())
     .then(html => { getElement('pagecontent_container').innerHTML = html;
     setClass('pagecontent_container','pg-loaded');  });

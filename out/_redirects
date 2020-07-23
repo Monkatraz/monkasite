@@ -1,2 +1,2 @@
 /pages/*   /index.html   200!
-/fetch/* /:splat
+/fetch/* /pages/:splat
