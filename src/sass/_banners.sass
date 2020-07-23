@@ -19,7 +19,7 @@
   width: 100%
   margin-bottom: 1.5em
   transform: scale(1.1)
-  filter: blur(1px) brightness(100%)
+  filter: brightness(100%)
   transition: filter 0.2s, transform 0.3s
   pointer-events: none
 
@@ -77,7 +77,7 @@
 
   .banner_img
     transform: scale(1)
-    filter: blur(0)
+    filter: none
 
   .banner_link
     background-size: 100% 70%
@@ -87,7 +87,7 @@
   transition: none
   ~ .banner_img
     transform: scale(0.99)
-    filter: blur(0) brightness(90%)
+    filter: brightness(90%)
     transition: none
 
 // Github banners
