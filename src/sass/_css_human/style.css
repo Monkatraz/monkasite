@@ -177,9 +177,9 @@ p {
 
 #main {
   position: relative;
-  flex-grow: 1;
   display: flex;
   flex-direction: row;
+  flex-grow: 1;
   flex-wrap: nowrap;
   justify-content: flex-start;
   width: 100%; }
@@ -204,10 +204,10 @@ p {
   align-self: flex-end;
   width: 100%;
   height: 3em;
-  background: #071b28;
+  margin-bottom: -3em;
   padding-top: 1em;
   padding-left: 5%;
-  margin-bottom: -3em; }
+  background: #071b28; }
 
 .pg-narrow {
   width: 700px;
@@ -247,52 +247,52 @@ p {
   width: 100%; }
 
 .model-img {
-  width: 50%;
-  flex-shrink: 0; }
+  flex-shrink: 0;
+  width: 50%; }
 
 #pg-about, #pg-experience {
   position: relative;
   flex: 1;
-  padding: 0;
+  min-width: 400px;
   margin: 0;
-  min-width: 400px; }
+  padding: 0; }
 
 #pg-about::after {
   position: absolute;
+  top: 0;
+  right: -4em;
   display: block;
   width: 2px;
   height: 100%;
   background: gray;
-  content: "";
-  right: -4em;
-  top: 0; }
+  content: ""; }
 
 #experience-boxes {
   display: flex;
   flex-wrap: wrap;
   grid-gap: 1em 0.5em;
-  justify-content: center;
+  align-content: stretch;
   align-items: stretch;
-  align-content: stretch; }
+  justify-content: center; }
 
 .experience-box {
-  width: auto;
   flex-grow: 1;
+  width: auto;
   background: #092232; }
   .experience-box h3 {
     display: block;
-    background: #1e64aa;
     margin: 0;
     padding: 0.25em 0.25em;
-    text-align: center; }
+    text-align: center;
+    background: #1e64aa; }
   .experience-box ul {
     margin: 0;
     padding: 0;
     background: #071b28; }
     .experience-box ul li {
-      list-style: inside;
       margin: 0.1em 0;
       padding: 0.5em 1em;
+      list-style: inside;
       background: #092232; }
 
 [data-tip] {
@@ -427,30 +427,30 @@ p {
 .banner-github {
   position: relative;
   display: block;
-  background: #21323e;
-  padding: 0;
   margin: 2em 0;
+  padding: 0;
+  background: #21323e;
   contain: content; }
   .banner-github .fa-github {
     position: absolute;
     top: 0;
     left: 0;
+    height: 100%;
     padding: 0.25em;
     font-size: 200%;
-    height: 100%;
     background: #3f95e8; }
 
 .banner-github_link {
   position: absolute;
+  display: block;
   width: 100%;
   height: 100%;
-  font-size: 0%;
-  display: block; }
+  font-size: 0%; }
 
 .banner-github_title {
-  font-size: 110%;
-  font-weight: bold;
   padding: 0.5em 3.5em;
+  font-weight: bold;
+  font-size: 110%;
   background: #1e64aa;
   transition: text-shadow 0.2s, background 0.2s; }
 
