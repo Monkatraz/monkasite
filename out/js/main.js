@@ -69,9 +69,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 }, false);
 
+// Low quality placeholders
+function imgReplacePlaceholder(mutationsList, observer) {
+  getElement('pagecontent_container').querySelectorAll('img').forEach(img => {
+    img.addEventListener('load', function(){
+      if(this.getAttribute('data-src')) {
+        this.setAttribute('src',this.getAttribute('data-src'));
+      }
+    });
+  });
+}
+// Get whenever we update the content (probably better ways of doing this)
+const imgObserver = new MutationObserver(imgReplacePlaceholder);
+imgObserver.observe(getElement('pagecontent_container'), {subtree: true, childList: true});
+
 // Dragging fix
 // https://stackoverflow.com/questions/26356877/html5-draggable-false-not-working-in-firefox-browser
-document.addEventListener("dragstart", function( event ) {
+document.addEventListener('dragstart', function( event ) {
     if (event.target.localName == 'a') {
       event.preventDefault();
     }
