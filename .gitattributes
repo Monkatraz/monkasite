@@ -178,4 +178,4 @@ Procfile    text
 ## EXECUTABLES
 *.exe binary
 *.pyc binary
-media/** filter=lfs diff=lfs merge=lfs -text
+out/media/** filter=lfs diff=lfs merge=lfs -text
