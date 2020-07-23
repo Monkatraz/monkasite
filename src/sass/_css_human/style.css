@@ -246,10 +246,6 @@ p {
 #anim-video {
   width: 100%; }
 
-.model-img {
-  flex-shrink: 0;
-  width: 50%; }
-
 #pg-about, #pg-experience {
   position: relative;
   flex: 1;
@@ -353,6 +349,7 @@ p {
   margin: 2em 0;
   contain: content;
   color: #ebebeb;
+  background: #21323e;
   box-shadow: inset 0px 0px 5px #21323e;
   transition: text-shadow 0.5s, box-shadow 0.5s; }
 
