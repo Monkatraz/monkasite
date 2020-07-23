@@ -12,9 +12,7 @@ function setClass(id, className){
   getElement(id).className = className;
 }
 
-const fetchSettings = {
-  cache: 'no-cache'
-}
+const fetchSettings = {}
 
 function grabPageContent(page){
   fetch(page, fetchSettings)
@@ -23,7 +21,7 @@ function grabPageContent(page){
     setClass('pagecontent_container','pg-loaded');  });
 }
 
-function pageContentSwitch(page, firstload){
+function pageContentSwitch(page){
   const pageClass = page.replace('.html','').split('/');
 
   setClass('pagecontent_container', 'pg-loading');
@@ -63,6 +61,13 @@ window.onpopstate = function(event) {
     document.title = 'monkasite.html';
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const path = document.location.pathname;
+    if(path != '/'){
+      pageContentSwitch(path);
+    }
+}, false);
 
 // Dragging fix
 // https://stackoverflow.com/questions/26356877/html5-draggable-false-not-working-in-firefox-browser
