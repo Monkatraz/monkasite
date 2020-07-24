@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // - the home page is already inside index.html
     const path = document.location.pathname;
     if(path != '/'){
-      removeElement('pagecontainer') // So that we don't see it get painted
+      removeElement('pagecontainer')
       pageContentSwitch(path);
     }
     // When page is loaded,  we'll select all our nav-links and listen to them
@@ -29,8 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Page successfully switched, DOM is in
 function onPageContentLoad() {
-  const container = getElement('pagecontent_container')
-  container.className = 'pg-loaded'
+  const container = getElement('pagecontent_container');
+  // Very slight timeout just for the sake of making things look smoother
+  setTimeout(function(){ container.className = 'pg-loaded' }, 50);
   // Replace our crappy images with the correct ones
   container.querySelectorAll('img').forEach(img => {
     img.addEventListener('load', function(){
@@ -68,7 +69,7 @@ function pageContentSwitch(page){
   setClass('header',pageClass[2] ? pageClass[2] : 'home');
   document.querySelectorAll('.nav_link').forEach(link => link.className= ('link-' + pageClass[2]) == link.id ? 'nav_link currentpage' : 'nav_link');
 
-  // We're doing a timeout so that we can let the page disappear
+  // We're doing a timeout so that we can let the page disappear with an animation
   // Not for any actual reason, just purely for the purposes of coolfactor
   setTimeout(function(){
     removeElement('pagecontent');

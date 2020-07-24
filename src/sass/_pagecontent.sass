@@ -13,14 +13,22 @@
   flex-shrink: 0
   padding: 0 0 20px
   padding-top: 30px
-  transition: filter 0.1s, opacity 0.25s
+
+
+.pg-loaded
+  opacity: 1
+  transition: filter 0.1s 0.1s, opacity 0.25s 0.1s
+  + .loading
+    opacity: 0
+    transition: opacity 0.1s
 
 .pg-loading
-  transition: filter 0.1s, opacity 0.25s
   opacity: 0
   filter: blur(10px)
+  transition: filter 0.1s, opacity 0.25s
   + .loading
     opacity: 1
+    transition: opacity 0.2s 0.5s
 
 #rightbuffer, #leftbuffer
   width: 15%
