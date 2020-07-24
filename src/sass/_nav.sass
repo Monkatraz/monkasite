@@ -2,15 +2,16 @@
 
 #nav_links
   display: flex
-  flex: 1 1 auto
+  flex-wrap: wrap
   align-items: center
   justify-content: left
   padding-top: 1em
   padding-bottom: 1em
   background: $col-low-accent
 
-#nav_leftbuffer
-  width: 5%
+#nav_container
+  padding-left: 5%
+  padding-right: 5%
 
 // Keyframes for a keyboard accessibility trick with the nav buttons
 // Select box-shadow will pop up for a moment if focused
@@ -27,13 +28,14 @@
 
 #header .nav_link
   position: relative
+  display: inline-block
   flex-shrink: 0
   width: max-content
   min-width: min-content
   margin-right: 1em
   padding: 0.25em
   color: $col-text-low
-  font-size: clamp(0.5em, 2vw, 150%)
+  font-size: 150%
   text-align: center
   text-decoration: none
   border-radius: 5px
