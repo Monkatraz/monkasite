@@ -610,7 +610,8 @@ p {
   padding-left: 5%; }
 
 #anim_video-wrap {
-  display: flex; }
+  display: flex;
+  height: 70vh; }
 
 #anim_video {
   position: relative;
@@ -619,6 +620,7 @@ p {
   width: -moz-min-content;
   width: min-content;
   margin: auto;
+  background: #21323e;
   border-radius: 20px;
   contain: content; }
 
