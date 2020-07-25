@@ -59,12 +59,14 @@ function onPageContentLoad() {
 
       if(dataType == 'vid'){
         elementVideoPlayer.style.display = 'block';
+        setTimeout(function(){ getElement('anim_video_player').style.opacity = '1'; }, 50);
         elementImage.style.display = 'none';
         elementVideoPlayer.pause();
         elementVideoPlayer.querySelector('source').setAttribute('src', dataSrc);
         elementVideoPlayer.load();
       }else{
         elementVideoPlayer.style.display = 'none';
+        elementVideoPlayer.style.opacity = '0';
         elementImage.style.display = 'block';
         elementImage.setAttribute('src', dataSrc);
       }
