@@ -53,7 +53,9 @@ function onPageContentLoad() {
       if(dataType == 'vid'){
         elementVideoPlayer.style.display = 'block';
         elementImage.style.display = 'none';
+        elementVideoPlayer.pause();
         elementVideoPlayer.querySelector('source').setAttribute('src', dataSrc);
+        elementVideoPlayer.load();
       }else{
         elementVideoPlayer.style.display = 'none';
         elementImage.style.display = 'block';
