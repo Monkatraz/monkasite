@@ -1,7 +1,91 @@
-<div id="pagecontent" class="pg-wide">
-  <h1 class="f-light" style="text-align: center;">Select any animation from the menu below</h1>
-  <video id="anim-video" controls loop muted>
-  <source src="/media/vid/g3_reload.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-  </video>
+<div id="pagecontent" class="pg-max">
+  <h1 class="f-light" style="text-align: center; margin-top: 0px;">Select galleries using the menu below</h1>
+  <div id="anim">
+    <div id="anim_video-wrap">
+      <div id="anim_video">
+        <img src="/media/img/g3_poster.png?nf_resize=fit&w=500" id="anim_video_poster">
+        <video id="anim_video_player" controls loop muted
+        poster="/media/img/transparent.png">
+        <source src="/media/vid/g3_reload.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
+      </div>
+      <img id="anim_image" style="display: none;" src="/media/img/g3_poster.png">
+    </div>
+    <div id="anim_tab">
+      <div id="anim_tab_header" class="f-light">
+        <button class="anim_tab_header_hiddenbutton" onclick="switchAnimTab(0)">
+          <div id="anim_tab_header_media" class="anim_tab_header_option currenttab">Media</div>
+        </button>
+        <button class="anim_tab_header_hiddenbutton" onclick="switchAnimTab(1)">
+          <div id="anim_tab_header_info" class="anim_tab_header_option">Info</div>
+        </button>
+      </div>
+      <div id="anim_content">
+        <div id="anim_tab_media">
+          <div class="anim_tab_media_option">
+            <input
+            title="g3_reload"
+            data-file="/media/vid/g3_reload.mp4"
+            data-type="vid"
+            type="radio" class="anim_tab_media_option_radio" name="subselect" checked>
+            <img class ="anim_tab_media_img" src="/media/img/g3_poster.png?nf_resize=fit&w=150">
+            <i class="fas fa-play anim_tab_media_type"></i>
+          </div>
+
+          <div class="anim_tab_media_option">
+            <input
+            title="g3_pic"
+            data-file="/media/img/g3_pic.png"
+            data-type="img"
+            type="radio" class="anim_tab_media_option_radio" name="subselect">
+            <img class ="anim_tab_media_img" src="/media/img/g3_pic.png?nf_resize=fit&w=150">
+            <i class="fas fa-image anim_tab_media_type"></i>
+          </div>
+
+          <div class="anim_tab_media_option">
+            <input
+            title="g3_blender"
+            data-file="/media/img/g3_blender.png"
+            data-type="img"
+            type="radio" class="anim_tab_media_option_radio" name="subselect">
+            <img class ="anim_tab_media_img" src="/media/img/g3_blender.png?nf_resize=fit&w=150">
+            <i class="fas fa-image anim_tab_media_type"></i>
+          </div>
+        </div>
+        <div id="anim_tab_info" style="display: none">
+          <h2 style="text-align: center; padding-bottom: 0.5em;">G3 Reload Animation</h2>
+          <hr>
+          <h3 class="f-light">Info -</h3>
+          <span style="padding-left: 1em;">Rendered in Cycles</span><br>
+          <a href="https://www.artstation.com/artwork/oOn0lk"
+          style="padding-left: 1em; text-decoration: none;"><i class="fab fa-artstation"> </i> ArtStation Post</a>
+          <h3 class="f-light">Credits -</h3>
+          <span style="font-weight: bold; padding-left: 1em;">Model:</span> <span>Kyrcek</span><br>
+          <span style="font-weight: bold; padding-left: 1em;">Arms:</span> <span>ICHICROW</span><br>
+          <span style="font-weight: bold; padding-left: 1em;">Sounds:</span> <span>DICE and Strelok</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="anim-select">
+    <hr>
+    <div id="anim-select_options">
+
+      <div class="anim-select_option"
+        data-page="/partials/anims/g3.html">
+        <input title="G3 Reload Animation"
+        type="radio" class="anim-select_option_radio" name="select" checked>
+        <img class="anim-select_img" src="/media/img/g3_poster.png?nf_resize=fit&w=250">
+      </div>
+
+      <div class="anim-select_option"
+        data-page="/partials/anims/g3.html">
+        <input title="G3 Reload Animation"
+        type="radio" class="anim-select_option_radio" name="select">
+        <img class="anim-select_img" src="/media/img/g3_poster.png?nf_resize=fit&w=250">
+      </div>
+
+    </div>
+  </div>
 </div>

@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // we need to load the correct page
     // If it's no page, just leave it alone -
     // - the home page is already inside index.html
-    const path = document.location.pathname;
+    //const path = document.location.pathname;
+    path = '/pages/animations.html'
     if(path != '/'){
       removeElement('pagecontainer')
       pageContentSwitch(path);
@@ -40,6 +41,26 @@ function onPageContentLoad() {
       }
     });
   });
+  // For the animations tab:
+  // Grab all our file links and make em work
+  container.querySelectorAll('.anim_tab_media_option_radio').forEach(file => {
+    file.addEventListener('click', function(){
+      const elementVideoPlayer = getElement('anim_video_player');
+      const elementImage = getElement('anim_image');
+      const dataType = this.getAttribute('data-type');
+      const dataSrc = this.getAttribute('data-file');
+
+      if(dataType == 'vid'){
+        elementVideoPlayer.style.display = 'block';
+        elementImage.style.display = 'none';
+        elementVideoPlayer.querySelector('source').setAttribute('src', dataSrc);
+      }else{
+        elementVideoPlayer.style.display = 'none';
+        elementImage.style.display = 'block';
+        elementImage.setAttribute('src', dataSrc);
+      }
+    });
+  });
 }
 // Check if our mutation is actually a new page
 // Rather than going through the mutations this is just simpler
@@ -52,7 +73,9 @@ const imgObserver = new MutationObserver(checkIfNewPage);
 imgObserver.observe(getElement('pagecontent_container'), {subtree: true, childList: true});
 
 // Fetch function to get our page and then load it once it has it
-const fetchSettings = {}
+const fetchSettings = {
+  cache: "no-cache"
+}
 function grabPageContent(page){
   // for the sake of simplicity I do this hacky string replace solution rather than proper rewriting of URLS
   fetch(page.replace('pages','partials'), fetchSettings)
@@ -115,3 +138,22 @@ document.addEventListener('dragstart', function( event ) {
       event.preventDefault();
     }
 }, false);
+
+// Little script for the tab switcher in the Animations
+function switchAnimTab(tab){
+  const button_media = getElement('anim_tab_header_media')
+  const button_info = getElement('anim_tab_header_info')
+  const tab_media = getElement('anim_tab_media')
+  const tab_info = getElement('anim_tab_info')
+  if(tab == 0){
+    button_media.className = 'anim_tab_header_option currenttab'
+    button_info.className = 'anim_tab_header_option'
+    tab_media.style.display = 'flex'
+    tab_info.style.display = 'none'
+  }else{
+    button_media.className = 'anim_tab_header_option'
+    button_info.className = 'anim_tab_header_option currenttab'
+    tab_media.style.display = 'none'
+    tab_info.style.display = 'block'
+  }
+}
