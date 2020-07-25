@@ -179,4 +179,3 @@ Procfile    text
 *.exe binary
 *.pyc binary
 out/media/** filter=lfs diff=lfs merge=lfs -text
-media/img/** filter=lfs diff=lfs merge=lfs -text

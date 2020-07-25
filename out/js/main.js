@@ -44,6 +44,13 @@ function onPageContentLoad() {
   // For the animations tab:
   // Grab all our file links and make em work
   container.querySelectorAll('.anim_tab_media_option_radio').forEach(file => {
+    // Really dumb, stupid fix because of Netlify URL file rewriting bugs
+    if(file.checked && file.getAttribute('data-type') == 'vid'){
+      const elementVideoPlayer = getElement('anim_video_player');
+      elementVideoPlayer.pause();
+      elementVideoPlayer.querySelector('source').setAttribute('src', file.getAttribute('data-file'));
+      elementVideoPlayer.load();
+    }
     file.addEventListener('click', function(){
       const elementVideoPlayer = getElement('anim_video_player');
       const elementImage = getElement('anim_image');
