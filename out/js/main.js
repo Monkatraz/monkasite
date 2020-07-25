@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // we need to load the correct page
     // If it's no page, just leave it alone -
     // - the home page is already inside index.html
-    //const path = document.location.pathname;
-    path = '/pages/animations.html'
+    const path = document.location.pathname;
+    //path = '/pages/animations.html'
     if(path != '/'){
       removeElement('pagecontainer')
       pageContentSwitch(path);
