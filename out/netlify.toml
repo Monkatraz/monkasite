@@ -6,10 +6,3 @@ package = "netlify-plugin-subfont"
 
 [[plugins]]
   package = "netlify-plugin-inline-source"
-
-[lfs]
-	fetchinclude = *.jpg,*.png,*.jpeg,*.svg,*.gif,*.pdf,*.mp4,*.bmp
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
