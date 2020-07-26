@@ -73,11 +73,19 @@ function onPageContentLoad() {
   // For the animations tab:
   const anim = getElement('anim');
   if(anim){
-    // Gallery switching
-    // Get our gallery links and make em work
-    container.querySelectorAll('.anim-select_option_radio').forEach(gallery => {
-      gallery.addEventListener('click', swtichAnimGallery);
-    });
+    // First setup when we switch to tab
+    const animContainer = getElement('anim-container')
+    if(animContainer.className == 'firstload'){
+      animContainer.className = ''
+      // Scroll to best position (using the header to gauge)
+      const headerHeight = getElement('header').getBoundingClientRect().height
+      window.scrollTo(0,headerHeight)
+      // Gallery switching
+      // Get our gallery links and make em work
+      container.querySelectorAll('.anim-select_option_radio').forEach(gallery => {
+        gallery.addEventListener('click', swtichAnimGallery);
+      });
+    }
     // Check if the anim tab is
     // 1. loaded
     // 2. being switched and done with it - if so, set to loaded
@@ -147,11 +155,10 @@ async function switchAnimMedia(){
    elementImage.setAttribute('src', dataSrc);
    // Fancy loading transition garbage
    if(elementImage.complete == false){
-     elementImage.style.transition = 'none'
-     elementImage.style.opacity = 0;
+     let imgOpacityTimeout = setTimeout(elementImage => {elementImage.style.opacity = 0;}, 50);
      await waitFor(_ => elementImage.complete == true);
-     elementImage.style.transition = 'opacity 0.2s'
      elementImage.style.opacity = 1;
+     clearTimeout(imgOpacityTimeout)
    }else{
      elementImage.style.opacity = 1;
    }

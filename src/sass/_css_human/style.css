@@ -683,6 +683,7 @@ p {
   display: flex;
   justify-content: center;
   overflow: hidden;
+  background: #21323e;
   border-radius: 20px;
   contain: content; }
   #anim_video-wrap::before {
@@ -715,7 +716,8 @@ p {
   min-height: 300px;
   max-height: 70vh;
   -o-object-fit: cover;
-     object-fit: cover; }
+     object-fit: cover;
+  transition: opacity 0.2s; }
 
 #anim_tab {
   display: block;
