@@ -37,8 +37,8 @@ function onPageContentLoad() {
   container.querySelectorAll('img').forEach(img => {
     img.addEventListener('load', function(){
       if(this.getAttribute('data-src')) {
+        this.onLoad = function(){this.setAttribute('data-src-loading','1')}
         this.setAttribute('src',this.getAttribute('data-src'));
-        this.setAttribute('data-src-loading','1');
       }
     });
   });
