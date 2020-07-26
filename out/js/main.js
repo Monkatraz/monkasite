@@ -155,7 +155,7 @@ async function switchAnimMedia(){
    elementImage.setAttribute('src', dataSrc);
    // Fancy loading transition garbage
    if(elementImage.complete == false){
-     let imgOpacityTimeout = setTimeout(elementImage => {elementImage.style.opacity = 0;}, 50);
+     let imgOpacityTimeout = setTimeout(_ => {elementImage.style.opacity = 0;}, 50);
      await waitFor(_ => elementImage.complete == true);
      elementImage.style.opacity = 1;
      clearTimeout(imgOpacityTimeout)
