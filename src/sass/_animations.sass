@@ -7,13 +7,12 @@
 #anim
   display: flex
   flex-wrap: wrap
-  grid-gap: 2em
   justify-content: center
   min-width: 70vw
   max-width: calc(70vh * 3)
   min-height: 200px
   margin: auto
-  padding-right: 5%
+  padding-right: calc(5% - 2em)
   padding-left: 5%
 
 .anim-loaded
@@ -26,7 +25,7 @@
 .anim-loading
   opacity: 0
   filter: blur(10px)
-  transition: filter 0.1s, opacity 0.25s
+  transition: filter 0.1s, opacity 0.2s
   + .loading
     opacity: 1
     transition: opacity 0.2s
@@ -40,6 +39,7 @@
   background: $col-back2
   border-radius: 20px
   contain: content
+  margin-right: 2em
 
   &::before
     width: calc(70vh * 1.778)
@@ -77,7 +77,9 @@
   flex-grow: 1
   min-width: 300px
   min-height: 400px
+  margin-right: 2em
   padding-bottom: 2em
+  overflow: hidden
   text-align: center
   background: $col-back2
   border-radius: 20px

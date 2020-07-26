@@ -356,14 +356,14 @@ p {
 #pg-about, #pg-experience {
   position: relative;
   flex-grow: 1;
-  width: 44%;
-  margin: 0;
+  width: 40%;
+  margin: 0 0 0 8em;
   padding: 0; }
 
 #pg-about::after {
   position: absolute;
   top: 0;
-  right: -4em;
+  right: -4.1em;
   display: block;
   width: 2px;
   height: 100%;
@@ -649,13 +649,12 @@ p {
 #anim {
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 2em;
   justify-content: center;
   min-width: 70vw;
   max-width: calc(70vh * 3);
   min-height: 200px;
   margin: auto;
-  padding-right: 5%;
+  padding-right: calc(5% - 2em);
   padding-left: 5%; }
 
 .anim-loaded {
@@ -671,9 +670,9 @@ p {
   opacity: 0;
   -webkit-filter: blur(10px);
           filter: blur(10px);
-  transition: opacity 0.25s, -webkit-filter 0.1s;
-  transition: filter 0.1s, opacity 0.25s;
-  transition: filter 0.1s, opacity 0.25s, -webkit-filter 0.1s; }
+  transition: opacity 0.2s, -webkit-filter 0.1s;
+  transition: filter 0.1s, opacity 0.2s;
+  transition: filter 0.1s, opacity 0.2s, -webkit-filter 0.1s; }
   .anim-loading + .loading {
     opacity: 1;
     transition: opacity 0.2s; }
@@ -685,7 +684,8 @@ p {
   overflow: hidden;
   background: #21323e;
   border-radius: 20px;
-  contain: content; }
+  contain: content;
+  margin-right: 2em; }
   #anim_video-wrap::before {
     width: calc(70vh * 1.778);
     height: 70vh;
@@ -724,7 +724,9 @@ p {
   flex-grow: 1;
   min-width: 300px;
   min-height: 400px;
+  margin-right: 2em;
   padding-bottom: 2em;
+  overflow: hidden;
   text-align: center;
   background: #21323e;
   border-radius: 20px;
