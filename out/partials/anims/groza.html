@@ -1,0 +1,75 @@
+<div id="anim_video-wrap">
+  <img src="/media/img/groza_pic.png?nf_resize=fit&w=300" id="anim_poster">
+  <video id="anim_video_player" controls loop muted
+  poster="/media/img/transparent.png">
+  <source src="/media/vid/groza.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+  </video>
+  <img id="anim_image" style="display: none;" src="/media/img/groza_pic.png">
+</div>
+<div id="anim_tab">
+  <div id="anim_tab_header" class="f-light">
+    <button class="anim_tab_header_hiddenbutton" onclick="switchAnimTab(0)">
+      <div id="anim_tab_header_media" class="anim_tab_header_option currenttab">Media</div>
+    </button>
+    <button class="anim_tab_header_hiddenbutton" onclick="switchAnimTab(1)">
+      <div id="anim_tab_header_info" class="anim_tab_header_option">Info</div>
+    </button>
+  </div>
+  <div id="anim_content">
+    <div id="anim_tab_media">
+      <div class="anim_tab_media_option">
+        <input
+        title="groza_reload"
+        data-file="/media/vid/groza.mp4"
+        data-type="vid"
+        type="radio" class="anim_tab_media_option_radio" name="subselect" checked>
+        <img class ="anim_tab_media_img" src="/media/img/groza_pic.png?nf_resize=fit&w=150">
+        <i class="fas fa-play anim_tab_media_type"></i>
+      </div>
+
+      <div class="anim_tab_media_option">
+        <input
+        title="groza_pic"
+        data-file="/media/img/groza_pic.png"
+        data-type="img"
+        type="radio" class="anim_tab_media_option_radio" name="subselect">
+        <img class ="anim_tab_media_img" src="/media/img/groza_pic.png?nf_resize=fit&w=150">
+        <i class="fas fa-image anim_tab_media_type"></i>
+      </div>
+
+      <div class="anim_tab_media_option">
+        <input
+        title="groza_pic"
+        data-file="/media/img/groza_pic2.png"
+        data-type="img"
+        type="radio" class="anim_tab_media_option_radio" name="subselect">
+        <img class ="anim_tab_media_img" src="/media/img/groza_pic2.png?nf_resize=fit&w=150">
+        <i class="fas fa-image anim_tab_media_type"></i>
+      </div>
+
+      <div class="anim_tab_media_option">
+        <input
+        title="groza_blender"
+        data-file="/media/img/groza_blender.png"
+        data-type="img"
+        type="radio" class="anim_tab_media_option_radio" name="subselect">
+        <img class ="anim_tab_media_img" src="/media/img/groza_blender.png?nf_resize=fit&w=150">
+        <i class="fas fa-image anim_tab_media_type"></i>
+      </div>
+    </div>
+    <div id="anim_tab_info" style="display: none">
+      <h2 style="text-align: center; padding-bottom: 0.5em;">OTs-14 Groza Animations</h2>
+      <hr>
+      <h3 class="f-light">Info -</h3>
+      <span style="padding-left: 1em;">Rendered in Cycles</span><br>
+      <a href="https://www.artstation.com/artwork/v1Xdg6"
+      style="padding-left: 1em; text-decoration: none;"><i class="fab fa-artstation"> </i> ArtStation Post</a>
+      <h3 class="f-light">Credits -</h3>
+      <span style="font-weight: bold; padding-left: 1em;">Model:</span> <span>1ns1debeast & KolX.1999.rus</span><br>
+      <span style="font-weight: bold; padding-left: 1em;">Arms:</span> <span>Facepunch Studios</span><br>
+      <span style="font-weight: bold; padding-left: 1em;">Sounds:</span> <span>DICE and Strelok</span><br>
+      <span style="font-weight: bold; padding-left: 1em;">Song:</span> <span>System - Manarola</span>
+    </div>
+  </div>
+</div>

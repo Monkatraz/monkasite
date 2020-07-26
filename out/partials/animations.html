@@ -1,14 +1,14 @@
 <div id="pagecontent" class="pg-max">
   <h1 class="f-light" style="text-align: center; margin-top: 0px;">Select galleries using the menu below</h1>
-  <div id="anim">
+  <div id="anim" class="anim-loaded">
     <div id="anim_video-wrap">
-      <img src="/media/img/g3_poster.png?nf_resize=fit&w=300" id="anim_poster">
-      <video id="anim_video_player" controls loop muted
+      <img src="/media/img/g3_pic.png?nf_resize=fit&w=300" id="anim_poster">
+      <video id="anim_video_player" class="firstload" controls loop muted
       poster="/media/img/transparent.png">
-      <source src="../media/vid/g3_reload.mp4" type="video/mp4">
+      <source src="/media/vid/g3_reload.mp4" type="video/mp4">
       Your browser does not support the video tag.
       </video>
-      <img id="anim_image" style="display: none;" src="/media/img/g3_poster.png">
+      <img id="anim_image" style="display: none;" src="/media/img/g3_pic.png">
     </div>
     <div id="anim_tab">
       <div id="anim_tab_header" class="f-light">
@@ -27,7 +27,7 @@
             data-file="/media/vid/g3_reload.mp4"
             data-type="vid"
             type="radio" class="anim_tab_media_option_radio" name="subselect" checked>
-            <img class ="anim_tab_media_img" src="/media/img/g3_poster.png?nf_resize=fit&w=150">
+            <img class ="anim_tab_media_img" src="/media/img/g3_pic.png?nf_resize=fit&w=150">
             <i class="fas fa-play anim_tab_media_type"></i>
           </div>
 
@@ -66,22 +66,34 @@
       </div>
     </div>
   </div>
+  <div class="loading" style="top: 350px">
+    <div class="ld ld1"></div>
+    <div class="ld ld2"></div>
+    <div class="ld ld3"></div>
+  </div>
   <div id="anim-select">
     <hr>
     <div id="anim-select_options">
 
-      <div class="anim-select_option"
-        data-page="/partials/anims/g3.html">
-        <input title="G3 Reload Animation"
+      <div class="anim-select_option">
+        <input title="G3 Reload Animation" data-page="/partials/anims/g3.html"
         type="radio" class="anim-select_option_radio" name="select" checked>
-        <img class="anim-select_img" src="/media/img/g3_poster.png?nf_resize=fit&w=250">
+        <img class="anim-select_img" src="/media/img/g3_pic.png?nf_resize=fit&w=250">
+        <span class="anim-select_title">G3</span>
       </div>
 
-      <div class="anim-select_option"
-        data-page="/partials/anims/g3.html">
-        <input title="G3 Reload Animation"
+      <div class="anim-select_option">
+        <input title="M1014 Animations" data-page="/partials/anims/m1014.html"
         type="radio" class="anim-select_option_radio" name="select">
-        <img class="anim-select_img" src="/media/img/g3_poster.png?nf_resize=fit&w=250">
+        <img class="anim-select_img" src="/media/img/m1014_pic.png?nf_resize=fit&w=250">
+        <span class="anim-select_title">M1014</span>
+      </div>
+
+      <div class="anim-select_option">
+        <input title="OTs-14 Groza Animations" data-page="/partials/anims/groza.html"
+        type="radio" class="anim-select_option_radio" name="select">
+        <img class="anim-select_img" src="/media/img/groza_pic.png?nf_resize=fit&w=250">
+        <span class="anim-select_title">Groza</span>
       </div>
 
     </div>

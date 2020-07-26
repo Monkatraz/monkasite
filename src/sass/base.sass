@@ -51,6 +51,19 @@ li
 
 // Misc. styles and classes
 
+// Blur-up any imgs with data-src
+@keyframes lqp-deblur
+  0%
+    filter: blur(5px)
+  100%
+    filter: blur(0)
+
+img[data-src]
+  filter: blur(5px)
+
+img[data-src-loading]
+    animation: lqp-deblur 0.5s 1 forwards
+
 // Secure email thingy (no JS)
 // https://stackoverflow.com/questions/21421948/protect-e-mail-address-with-css-only
 // <span class="e-mail" data-user="nohj" data-website="moc.liamg"></span>

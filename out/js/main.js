@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
     );
   })
 
-// Page successfully switched, DOM is in
+// Page content has switched, DOM is in
 function onPageContentLoad() {
   const container = getElement('pagecontent_container');
   // Very slight timeout just for the sake of making things look smoother
@@ -38,18 +38,35 @@ function onPageContentLoad() {
     img.addEventListener('load', function(){
       if(this.getAttribute('data-src')) {
         this.setAttribute('src',this.getAttribute('data-src'));
+        this.setAttribute('data-src-loading','1');
       }
     });
   });
   // For the animations tab:
+  // Gallery switching
+  // Get our gallery links and make em work
+  container.querySelectorAll('.anim-select_option_radio').forEach(gallery => {
+    gallery.addEventListener('click', swtichAnimGallery);
+  });
+  // Check if the anim tab is
+  // 1. loaded
+  // 2. switched - if so, set to loaded
+  const anim = getElement('anim');
+  if(anim && anim.className == 'anim-loading' && anim.innerHTML != ''){
+    anim.style.height = null;
+    anim.className = 'anim-loaded';
+  }
   // Grab all our file links and make em work
   container.querySelectorAll('.anim_tab_media_option_radio').forEach(file => {
     // Really dumb, stupid fix because of Netlify URL file rewriting bugs
     if(file.checked && file.getAttribute('data-type') == 'vid'){
       const elementVideoPlayer = getElement('anim_video_player');
-      elementVideoPlayer.pause();
-      elementVideoPlayer.querySelector('source').setAttribute('src', file.getAttribute('data-file'));
-      elementVideoPlayer.load();
+      if(elementVideoPlayer.className == 'firstload'){
+        elementVideoPlayer.className = '';
+        elementVideoPlayer.pause();
+        elementVideoPlayer.querySelector('source').setAttribute('src', file.getAttribute('data-file'));
+        elementVideoPlayer.load();
+      }
     }
     file.addEventListener('click', function(){
       const elementVideoPlayer = getElement('anim_video_player');
@@ -74,14 +91,32 @@ function onPageContentLoad() {
   });
 }
 // Check if our mutation is actually a new page
-// Rather than going through the mutations this is just simpler
-// This isn't an extendable system - but it's fine for this
-function checkIfNewPage(mutationsList, observer){
-  if(getElement('pagecontent')){ onPageContentLoad() }
+function checkIfNewPage(mutationsList){
+  if(mutationsList[0].addedNodes){ onPageContentLoad() }
 }
 // Call function when our new page is in the DOM
 const imgObserver = new MutationObserver(checkIfNewPage);
 imgObserver.observe(getElement('pagecontent_container'), {subtree: true, childList: true});
+
+var switchAnimGalleryFetchTimeout;
+function swtichAnimGallery(){
+  const anim = getElement('anim');
+  const page = this.getAttribute('data-page')
+  const animHeight = anim.getBoundingClientRect().height;
+  // Doing this so we don't get the flash of no gallery and then gallery
+  anim.style.height = animHeight + 'px';
+  anim.className = 'anim-loading';
+
+  clearTimeout(switchAnimGalleryFetchTimeout)
+  switchAnimGalleryFetchTimeout = setTimeout(function(){
+    anim.innerHTML = '';
+    fetch(page, fetchSettings)
+      .then(data => data.text())
+      .then(html => {
+        if(anim){ anim.innerHTML = html; }
+      });
+  }, 250);
+}
 
 // Fetch function to get our page and then load it once it has it
 const fetchSettings = {
@@ -95,6 +130,7 @@ function grabPageContent(page){
 }
 
 // Primary switch page function
+var pageContentSwitchFetchTimeout;
 function pageContentSwitch(page){
   const pageClass = page.replace('.html','').split('/');
 
@@ -105,7 +141,8 @@ function pageContentSwitch(page){
 
   // We're doing a timeout so that we can let the page disappear with an animation
   // Not for any actual reason, just purely for the purposes of coolfactor
-  setTimeout(function(){
+  clearTimeout(pageContentSwitchFetchTimeout)
+  pageContentSwitchFetchTimeout = setTimeout(function(){
     removeElement('pagecontent');
     grabPageContent(page);
   }, 250);

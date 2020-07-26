@@ -85,21 +85,49 @@
      background-position: 0% 0%, 100% 0%
 
 // -----
-// Animations
-#anim-video
-  width: 100%
-
-// -----
 // Models
-.model-img
+#model-container
+  display: flex
+  grid-gap: 1em
+  align-items: center
+  width: 100%
+  height: 300px
+
+.model-img-container
+  position: relative
   flex-grow: 1
+  height: 100%
+  contain: content
+  overflow: hidden
+  border-radius: 10px
+  transition: transform 0.2s, filter 0.25s
+
+  &:hover, &:focus-within
+    z-index: 10
+    transform: scale(1.25)
+    filter: drop-shadow(0 0 5px black)
+
+.model-img
+  position: absolute
+  top: 50%
+  left: 50%
+  width: 100%
+  height: 100%
+  object-fit: cover
+  background: gray
+  transform: translate(-50%, -50%)
+  transition: transform 0.5s
+
+  &:hover, &:focus
+    outline: none
+    transform: translate(-50%, -50%) scale(1.25)
 
 // -----
 // About page
 #pg-about, #pg-experience
   position: relative
-  flex: 1
-  min-width: 400px
+  flex-grow: 1
+  width: 44%
   margin: 0
   padding: 0
 

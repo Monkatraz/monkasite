@@ -13,6 +13,22 @@
   padding-right: 5%
   padding-left: 5%
 
+.anim-loaded
+  opacity: 1
+  transition: filter 0.1s 0.1s, opacity 0.25s 0.1s
+  + .loading
+    opacity: 0
+    transition: opacity 0.1s
+
+.anim-loading
+  opacity: 0
+  filter: blur(10px)
+  transition: filter 0.1s, opacity 0.25s
+  + .loading
+    opacity: 1
+    transition: opacity 0.2s
+
+
 #anim_video-wrap
   position: relative
   display: flex
@@ -23,6 +39,7 @@
   &::before
     width: calc(70vh * 1.778)
     height: 70vh
+    min-height: 300px
     max-height: calc(95vw / 1.778)
     content: ""
 
@@ -240,6 +257,7 @@
   width: 200px
   height: 110px
   contain: content
+  overflow: hidden
 
 .anim-select_img
   position: absolute
@@ -249,6 +267,18 @@
   transform: scale(0.9)
   filter: blur(2px)
   transition: transform 0.2s, filter 0.2s
+  pointer-events: none
+
+.anim-select_title
+  position: absolute
+  top: 50%
+  left: 50%
+  display: block
+  width: 100%
+  color: $col-text-low
+  text-align: center
+  transform: translate(-50%, -50%) scale(0.9)
+  transition: transform 0.2s, color 0.2s
   pointer-events: none
 
 .anim-select_option_radio
@@ -261,16 +291,25 @@
   opacity: 0
   user-select: none
 
-  &:hover + .anim-select_img
-    transform: scale(0.95)
-    filter: blur(1px)
+  &:hover
+    + .anim-select_img
+      transform: scale(0.95)
+      filter: blur(1px)
+    ~ .anim-select_title
+      color: $col-text
+      transform: translate(-50%, -50%) scale(0.95)
+
 
   &:active + .anim-select_img
     filter: blur(0) brightness(80%)
     transition: none
 
-  &:checked + .anim-select_img
-    border: 3px solid $col-text-focus
-    box-shadow: 0 0 5px black
-    transform: scale(1)
-    filter: blur(0)
+  &:checked
+    + .anim-select_img
+      border: 3px solid $col-text-focus
+      box-shadow: 0 0 5px black
+      transform: scale(1)
+      filter: blur(0)
+    ~ .anim-select_title
+      color: $col-text
+      transform: translate(-50%, -50%) scale(1)
