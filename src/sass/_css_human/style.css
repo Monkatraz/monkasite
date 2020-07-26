@@ -915,13 +915,13 @@ p {
   width: 200px;
   height: 110px;
   contain: content;
-  overflow: hidden;
-  background: #21323e; }
+  overflow: hidden; }
 
 .anim-select_img {
   position: absolute;
   width: 100%;
   height: 100%;
+  background: #21323e;
   border-radius: 10px;
   transform: scale(0.9);
   -webkit-filter: blur(2px);
