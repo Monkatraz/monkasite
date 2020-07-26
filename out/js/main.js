@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
       pageContentSwitch(path);
     }
     // When page is loaded,  we'll select all our nav-links and listen to them
-    document.querySelectorAll('.nav_link,#header_sitename_text').forEach(
+    document.querySelectorAll('.nav_link,#header_sitename_text,.condensed_nav_link').forEach(
       link => link.addEventListener('click', goToPage)
     );
   })
@@ -184,6 +184,7 @@ function pageContentSwitch(page){
   setClass('pagecontent_container', 'pg-loading');
   setClass('header',pageClass[2] ? pageClass[2] : 'home');
   document.querySelectorAll('.nav_link').forEach(link => link.className= ('link-' + pageClass[2]) == link.id ? 'nav_link currentpage' : 'nav_link');
+  document.querySelectorAll('.condensed_nav_link').forEach(link => link.className= ('link-' + pageClass[2]) == link.id ? 'condensed_nav_link currentpage' : 'condensed_nav_link');
 
   // We're doing a timeout so that we can let the page disappear with an animation
   // Not for any actual reason, just purely for the purposes of coolfactor

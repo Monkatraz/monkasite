@@ -16,15 +16,7 @@
 // Keyframes for a keyboard accessibility trick with the nav buttons
 // Select box-shadow will pop up for a moment if focused
 // This animation is designed to blend in with clicking
-@keyframes nav_link_focus
-  0%
-    // Putting nothing here - just need this for the parser
-  50%
-    box-shadow: inset 0em -3em 0px rgba(255,255,255, 0.2)
-  60%
-    // Parser indent!
-  100%
-    // Parser indent!
+
 
 #header .nav_link
   position: relative
@@ -46,7 +38,7 @@
 
   &.currentpage
     color: $col-text
-    text-shadow: 0px 0px 2px $col-text
+    text-shadow: 0px 0px 2px col-text
 
     &::after
       transform: translateX(-50%) scaleY(1)
@@ -63,7 +55,7 @@
 
   &:focus
     //color: $col-text-focus
-    text-shadow: 0px 0px 2px $col-text
+    text-shadow: 0px 0px 2px col-text
     animation: nav_link_focus 1s 1
 
   &::after
@@ -78,3 +70,147 @@
     transform: translateX(-50%) scaleY(0)
     transition: transform 0.1s
     content: ""
+
+// Condensed nav bar
+
+#condensed_nav_links
+  display: none
+  flex-wrap: wrap
+  justify-content: space-evenly
+  padding-top: 1em
+  padding-bottom: 1em
+  background: $col-low-accent
+
+.condensed_nav
+  position: relative
+
+.condensed_nav_list
+  position: absolute
+  top: 3.25em
+  left: 50%
+  z-index: 20
+  display: none
+  padding: 0.5em 1em
+  text-align: center
+  background: rgba($col-back2,0.8)
+  border-radius: 10px
+  transform: translateX(-50%)
+  backdrop-filter: blur(3px)
+
+  &::after
+    position: absolute
+    bottom: 100%
+    left: 50%
+    border-color: transparent transparent rgba($col-back2,0.8) transparent
+    border-style: solid
+    border-width: 15px
+    border-bottom-width: 15px
+    transform: translateX(-50%)
+    content: ""
+    pointer-events: none
+
+  &:active
+    display: block
+
+.condensed_nav_dropdown
+  position: relative
+  display: inline-block
+  flex-shrink: 0
+  width: max-content
+  min-width: min-content
+  padding: 0.25em
+  color: $col-text-low
+  font-size: 170%
+  text-align: center
+  text-decoration: none
+  background: none
+  border: none
+  border-radius: 5px
+  outline: none
+  cursor: pointer
+  transition: background 0.1s, filter 0.1s, box-shadow 0.3s, color 0.1s
+  user-select: none
+
+  &:hover
+    color: $col-text
+    box-shadow: inset 0em -3em 0px rgba(255,255,255, 0.2)
+
+  &:active
+    color: white
+    box-shadow: inset 0em -3em 0px rgba(255,255,255, 0.1), inset 0px 0px 4px -2px black
+    filter: brightness(90%)
+    transition: none
+
+  &:focus, &:focus-within
+    //color: $col-text-focus
+    text-shadow: 0px 0px 2px $col-text
+    animation: nav_link_focus 1s 1
+
+  &:focus
+    + .condensed_nav_list
+      display: block
+      animation: cnav_reveal 0.3s 1 backwards
+
+      @for $i from 1 through 5
+        .condensed_nav_link:nth-child(#{$i})
+          animation: cnavlink_reveal 0.2s #{0.05s * (($i - 1) / 2)} 1 backwards
+
+#condensed_nav_links .condensed_nav_link
+  position: relative
+  display: block
+  margin-bottom: 0.1em
+  padding: 0.25em 0.25em
+  color: $col-text-low
+  font-size: 140%
+  text-decoration: none
+  border-top: 1px $col-low-accent solid
+  transition: box-shadow 0.2s
+
+  &.currentpage
+    color: $col-text
+    text-shadow: 0px 0px 2px $col-text
+
+    &::after
+      transform: translateX(-50%) scaleY(1)
+
+  &::after
+    position: absolute
+    left: 50%
+    display: block
+    width: 90%
+    height: 2px
+    margin: auto
+    background: $col-text-low
+    border-radius: 5px
+    transform: translateX(-50%) scaleY(0)
+    transition: transform 0.1s
+    content: ""
+    pointer-events: none
+
+  &:hover
+    color: $col-text
+    text-shadow: 0px 0px 2px $col-text
+    box-shadow: inset 0em -3em 0px rgba(255,255,255, 0.2)
+
+// Animations
+@keyframes cnav_reveal
+  0%
+    opacity: 0
+    transform: translateX(-50%) translateY(-20px)
+    pointer-events: none
+  100%
+    opacity: 1
+    transform: translateX(-50%) translateY(0px)
+    pointer-events: auto
+
+@keyframes cnavlink_reveal
+  0%
+    opacity: 0
+    transform: translateY(-5px)
+    pointer-events: none
+  100%
+    opacity: 1
+    transform: translateY(0)
+    pointer-events: auto
+
+// asdasdf

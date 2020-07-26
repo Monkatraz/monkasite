@@ -1,6 +1,9 @@
 {
   "extends": ["stylelint-config-recommended", "stylelint-config-rational-order"],
   "plugins": ["stylelint-high-performance-animation"],
+  "ignoreFiles": [
+    "src/sass/_mediarules.sass"
+  ],
   "rules": {
     "plugin/no-low-performance-animation-properties": [ true, {"ignore": "paint-properties"} ]
   }

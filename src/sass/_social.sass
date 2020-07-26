@@ -1,40 +1,5 @@
 // main: base.sass
 
-.social
-  position: relative
-  display: inline-block
-  padding: 0.1em 0.2em
-  font-size: 200%
-  background: $col-back2
-  border-radius: 10px
-  cursor: default
-
-  a, i
-    color: $col-text-low
-    outline: none
-
-    &:focus
-      text-shadow: 0px 0px 2px $col-text
-  i
-    padding: 0 0.2em
-    cursor: pointer
-    transition: text-shadow 0.2s, color 0.2s
-
-    &:hover, &:focus
-      color: $col-text
-      text-shadow: 0px 0px 2px $col-text
-
-    &:active
-      color: $col-text * 0.9
-      text-shadow: 0px 0px 3px $col-text
-      transition: none
-
-  .fa-discord
-    position: relative
-    &:focus, &:focus-within
-      .social_discord_text
-        opacity: 1
-
 .social_discord_text
   position: absolute
   bottom: -1.5em
@@ -63,3 +28,39 @@
     transform: translateX(-50%)
     content: ""
     pointer-events: none
+
+.social
+  position: relative
+  display: inline-block
+  padding: 0.1em 0.2em
+  font-size: 200%
+  background: $col-back2
+  border-radius: 10px
+  cursor: default
+
+  i
+    padding: 0 0.2em
+    cursor: pointer
+    transition: text-shadow 0.2s, color 0.2s
+
+  a, i
+    color: $col-text-low
+    outline: none
+
+    &:focus
+      text-shadow: 0px 0px 2px $col-text
+
+    &:hover, &:focus
+      color: $col-text
+      text-shadow: 0px 0px 2px $col-text
+
+    &:active
+      color: $col-text * 0.9
+      text-shadow: 0px 0px 3px $col-text
+      transition: none
+
+  .fa-discord
+    position: relative
+    &:focus, &:focus-within
+      .social_discord_text
+        opacity: 1
