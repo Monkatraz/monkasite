@@ -46,24 +46,28 @@ function onPageContentLoad() {
   (async function waitUntilImageLoad(){
     const img = container.querySelector('img');
     const pagecontent = getElement('pagecontent')
+    let loaded = false;
     if(pagecontent && img){
       await waitFor(_ => img.complete == true);
       container.className = 'pg-loaded';
+      loaded = true;
     }else if(pagecontent){
       container.className = 'pg-loaded';
     }
+    if(loaded){
+      // Replace our crappy images with the correct ones
+      container.querySelectorAll('img').forEach(img => {
+        img.addEventListener('load', async function(){
+          const dataSrc = this.getAttribute('data-src')
+          if(dataSrc) {
+            this.setAttribute('src', dataSrc);
+            await waitFor(_ => this.complete == true);
+            this.setAttribute('data-src-loading','1');
+          }
+        });
+      });
+    }
   })();
-  // Replace our crappy images with the correct ones
-  container.querySelectorAll('img').forEach(img => {
-    img.addEventListener('load', async function(){
-      const dataSrc = this.getAttribute('data-src')
-      if(dataSrc) {
-        this.setAttribute('src', dataSrc);
-        await waitFor(_ => this.complete == true);
-        this.setAttribute('data-src-loading','1');
-      }
-    });
-  });
   // For the animations tab:
   // Gallery switching
   // Get our gallery links and make em work
