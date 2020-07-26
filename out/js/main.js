@@ -45,10 +45,11 @@ function onPageContentLoad() {
   // That way it looks smoother, hopefully
   (async function waitUntilImageLoad(){
     const img = container.querySelector('img');
-    if(img){
+    const pagecontent = getElement('pagecontent')
+    if(pagecontent && img){
       await waitFor(_ => img.complete == true);
       container.className = 'pg-loaded';
-    }else{
+    }else if(pagecontent){
       container.className = 'pg-loaded';
     }
   })();
