@@ -46,13 +46,10 @@ function onPageContentLoad() {
   container.querySelectorAll('img').forEach(img => {
     img.addEventListener('load', async function(){
       const dataSrc = this.getAttribute('data-src')
-      if(this.getAttribute('data-src')) {
-        let response = await fetch(dataSrc);
-        if(response.ok){
-          this.setAttribute('src', dataSrc);
-          await waitFor(_ => this.complete == true);
-          this.setAttribute('data-src-loading','1');
-        }
+      if(dataSrc) {
+        this.setAttribute('src', dataSrc);
+        await waitFor(_ => this.complete == true);
+        this.setAttribute('data-src-loading','1');
       }
     });
   });
