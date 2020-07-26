@@ -13,7 +13,7 @@ function setClass(id, className){
 function waitFor(conditionFunction) {
   const poll = resolve => {
     if(conditionFunction()) resolve();
-    else setTimeout(_ => poll(resolve), 400);
+    else setTimeout(_ => poll(resolve), 200);
   }
 
   return new Promise(poll);
@@ -40,8 +40,18 @@ document.addEventListener('DOMContentLoaded', function() {
 // Page content has switched, DOM is in
 function onPageContentLoad() {
   const container = getElement('pagecontent_container');
-  // Very slight timeout just for the sake of making things look smoother
-  setTimeout(function(){ container.className = 'pg-loaded' }, 50);
+  // If we have any images on the page -
+  // We will wait for the first one to complete
+  // That way it looks smoother, hopefully
+  (async function waitUntilImageLoad(){
+    const img = container.querySelector('img');
+    if(img){
+      await waitFor(_ => img.complete == true);
+      container.className = 'pg-loaded';
+    }else{
+      container.className = 'pg-loaded';
+    }
+  })();
   // Replace our crappy images with the correct ones
   container.querySelectorAll('img').forEach(img => {
     img.addEventListener('load', async function(){

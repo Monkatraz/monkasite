@@ -700,6 +700,7 @@ p {
   max-height: 70vh;
   -o-object-fit: cover;
      object-fit: cover;
+  background: #21323e;
   border-radius: 20px;
   transform: translateX(-50%); }
 
@@ -823,7 +824,8 @@ p {
   width: 45%;
   max-width: 400px;
   height: auto;
-  contain: content; }
+  contain: content;
+  overflow: hidden; }
   .anim_tab_media_option::before {
     display: block;
     padding-top: 56.25%;
@@ -837,6 +839,7 @@ p {
   height: 100%;
   -o-object-fit: fill;
      object-fit: fill;
+  background: #3a3335;
   border: 3px solid transparent;
   border-radius: 5px;
   transform: scale(0.95);
@@ -912,7 +915,8 @@ p {
   width: 200px;
   height: 110px;
   contain: content;
-  overflow: hidden; }
+  overflow: hidden;
+  background: #21323e; }
 
 .anim-select_img {
   position: absolute;
