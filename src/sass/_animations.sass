@@ -1,6 +1,9 @@
 // main: base.sass
 
 // Animations
+#anim-container
+  position: relative
+
 #anim
   display: flex
   flex-wrap: wrap
@@ -33,6 +36,7 @@
   position: relative
   display: flex
   justify-content: center
+  overflow: hidden
   border-radius: 20px
   contain: content
 
@@ -43,21 +47,6 @@
     max-height: calc(95vw / 1.778)
     content: ""
 
-#anim_poster
-  position: absolute
-  top: 0
-  left: 50%
-  z-index: 0
-  flex-shrink: 0
-  width: 100%
-  max-width: 95vw
-  min-height: 300px
-  max-height: 70vh
-  object-fit: cover
-  background: $col-back2
-  border-radius: 20px
-  transform: translateX(-50%)
-
 #anim_video_player
   position: absolute
   top: 0
@@ -66,19 +55,20 @@
   flex-shrink: 0
   width: 100%
   max-width: 95vw
+  height: 100%
   min-height: 300px
   max-height: 70vh
   object-fit: cover
   border-radius: 20px
   transform: translateX(-50%)
-  transition: opacity 0.25s 0.1s
 
 #anim_image
   position: absolute
   z-index: 10
+  height: 100%
   min-height: 300px
   max-height: 70vh
-  object-fit: fill
+  object-fit: cover
 
 #anim_tab
   display: block
@@ -187,8 +177,7 @@
   width: 100%
   height: 100%
   object-fit: fill
-  background: $col-gray
-  border: 3px solid transparent
+  background: $col-back
   border-radius: 5px
   transform: scale(0.95)
   filter: blur(2px)

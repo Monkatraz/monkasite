@@ -39,80 +39,67 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Page content has switched, DOM is in
 function onPageContentLoad() {
+  // New pagecontent stuff
   const container = getElement('pagecontent_container');
-  // If we have any images on the page -
-  // We will wait for the first one to complete
-  // That way it looks smoother, hopefully
-  (async function waitUntilImageLoad(){
-    const img = container.querySelector('img');
-    const pagecontent = getElement('pagecontent')
-    let loaded = false;
-    if(pagecontent && img){
-      await waitFor(_ => img.complete == true);
-      container.className = 'pg-loaded';
-      loaded = true;
-    }else if(pagecontent){
-      container.className = 'pg-loaded';
-    }
-    if(loaded){
-      // Replace our crappy images with the correct ones
-      container.querySelectorAll('img').forEach(async function(img){
-        const dataSrc = img.getAttribute('data-src')
-        if(dataSrc) {
-          img.setAttribute('src', dataSrc);
-          await waitFor(_ => img.complete == true);
-          img.setAttribute('data-src-loading','1');
-        }
-      });
-    }
-  })();
-  // For the animations tab:
-  // Gallery switching
-  // Get our gallery links and make em work
-  container.querySelectorAll('.anim-select_option_radio').forEach(gallery => {
-    gallery.addEventListener('click', swtichAnimGallery);
-  });
-  // Check if the anim tab is
-  // 1. loaded
-  // 2. switched - if so, set to loaded
-  const anim = getElement('anim');
-  if(anim && anim.className == 'anim-loading' && anim.innerHTML != ''){
-    anim.style.height = null;
-    anim.className = 'anim-loaded';
+  if(container.className == 'pg-loading'){
+    // If we have any images on the page -
+    // We will wait for the first one to complete
+    // That way it looks smoother, hopefully
+    (async function waitUntilImageLoad(){
+      const img = container.querySelector('img');
+      const pagecontent = getElement('pagecontent')
+      let loaded = false;
+      if(pagecontent && img){
+        await waitFor(_ => img.complete == true);
+        container.className = 'pg-loaded';
+        loaded = true;
+      }else if(pagecontent){
+        container.className = 'pg-loaded';
+      }
+      if(loaded){
+        // Replace our crappy images with the correct ones
+        container.querySelectorAll('img').forEach(async function(img){
+          const dataSrc = img.getAttribute('data-src')
+          if(dataSrc) {
+            img.setAttribute('src', dataSrc);
+            await waitFor(_ => img.complete == true);
+            img.setAttribute('data-src-loading','1');
+          }
+        });
+      }
+    })();
   }
-  // Grab all our file links and make em work
-  container.querySelectorAll('.anim_tab_media_option_radio').forEach(file => {
-    // Really dumb, stupid fix because of Netlify URL file rewriting bugs
-    if(file.checked && file.getAttribute('data-type') == 'vid'){
-      const elementVideoPlayer = getElement('anim_video_player');
-      if(elementVideoPlayer.className == 'firstload'){
-        elementVideoPlayer.className = '';
-        elementVideoPlayer.pause();
-        elementVideoPlayer.querySelector('source').setAttribute('src', file.getAttribute('data-file'));
-        elementVideoPlayer.load();
-      }
-    }
-    file.addEventListener('click', function(){
-      const elementVideoPlayer = getElement('anim_video_player');
-      const elementImage = getElement('anim_image');
-      const dataType = this.getAttribute('data-type');
-      const dataSrc = this.getAttribute('data-file');
 
-      if(dataType == 'vid'){
-        elementVideoPlayer.style.display = 'block';
-        setTimeout(function(){ getElement('anim_video_player').style.opacity = '1'; }, 50);
-        elementImage.style.display = 'none';
-        elementVideoPlayer.pause();
-        elementVideoPlayer.querySelector('source').setAttribute('src', dataSrc);
-        elementVideoPlayer.load();
-      }else{
-        elementVideoPlayer.style.display = 'none';
-        elementVideoPlayer.style.opacity = '0';
-        elementImage.style.display = 'block';
-        elementImage.setAttribute('src', dataSrc);
-      }
+  // For the animations tab:
+  const anim = getElement('anim');
+  if(anim){
+    // Gallery switching
+    // Get our gallery links and make em work
+    container.querySelectorAll('.anim-select_option_radio').forEach(gallery => {
+      gallery.addEventListener('click', swtichAnimGallery);
     });
-  });
+    // Check if the anim tab is
+    // 1. loaded
+    // 2. being switched and done with it - if so, set to loaded
+    if(anim && anim.className == 'anim-loading' && anim.innerHTML != ''){
+      anim.style.height = null;
+      anim.className = 'anim-loaded';
+    }
+    // Grab all our file links and make em work
+    container.querySelectorAll('.anim_tab_media_option_radio').forEach(file => {
+      // Really dumb, stupid fix because of Netlify URL file rewriting bugs
+      if(file.checked && file.getAttribute('data-type') == 'vid'){
+        const elementVideoPlayer = getElement('anim_video_player');
+        if(elementVideoPlayer.className == 'firstload'){
+          elementVideoPlayer.className = '';
+          elementVideoPlayer.pause();
+          elementVideoPlayer.querySelector('source').setAttribute('src', file.getAttribute('data-file'));
+          elementVideoPlayer.load();
+        }
+      }
+      file.addEventListener('click', switchAnimMedia);
+    });
+  }
 }
 // Check if our mutation is actually a new page
 function checkIfNewPage(mutationsList){
@@ -142,6 +129,34 @@ function swtichAnimGallery(){
   }, 250);
 }
 
+async function switchAnimMedia(){
+ const elementVideoPlayer = getElement('anim_video_player');
+ const elementImage = getElement('anim_image');
+ const dataType = this.getAttribute('data-type');
+ const dataSrc = this.getAttribute('data-file');
+
+ if(dataType == 'vid'){
+   elementVideoPlayer.style.display = 'block';
+   elementImage.style.display = 'none';
+   elementVideoPlayer.pause();
+   elementVideoPlayer.querySelector('source').setAttribute('src', dataSrc);
+   elementVideoPlayer.load();
+ }else{
+   elementVideoPlayer.style.display = 'none';
+   elementImage.style.display = 'block';
+   elementImage.setAttribute('src', dataSrc);
+   // Fancy loading transition garbage
+   if(elementImage.complete == false){
+     elementImage.style.transition = 'none'
+     elementImage.style.opacity = 0;
+     await waitFor(_ => elementImage.complete == true);
+     elementImage.style.transition = 'opacity 0.2s'
+     elementImage.style.opacity = 1;
+   }else{
+     elementImage.style.opacity = 1;
+   }
+ }
+}
 // Fetch function to get our page and then load it once it has it
 const fetchSettings = {
   cache: "no-cache"

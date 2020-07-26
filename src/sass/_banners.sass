@@ -3,24 +3,22 @@
 .banner
   position: relative
   width: 100%
-  height: 0
   margin: 2em 0
-  padding-bottom: 25%
+  min-height: 150px
   contain: content
   overflow: hidden
   color: $col-text-low
-  background: $col-gray
+  background: $col-back2
   border-radius: 10px
   box-shadow: inset 0px 0px 5px $col-back2
   transition: text-shadow 0.5s, box-shadow 0.5s
 
 .banner_img
-  position: absolute
+  position: relative
   top: 0
-  left: 0
   z-index: 1
   width: 100%
-  margin-bottom: 1.5em
+  object-fit: cover
   transform: scale(1.1)
   filter: brightness(100%)
   transition: filter 0.2s, transform 0.3s
@@ -58,6 +56,7 @@
   z-index: 10
   margin-bottom: 0.2em
   margin-left: 1.35em
+  max-width: 50%
 
 .banner_destination
   position: absolute
