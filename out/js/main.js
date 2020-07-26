@@ -56,11 +56,11 @@ function onPageContentLoad() {
     }
     if(loaded){
       // Replace our crappy images with the correct ones
-      container.querySelectorAll('img').forEach(img => {
+      container.querySelectorAll('img').forEach(async function(img){
         const dataSrc = img.getAttribute('data-src')
         if(dataSrc) {
           img.setAttribute('src', dataSrc);
-          await waitFor(_ => this.complete == true);
+          await waitFor(_ => img.complete == true);
           img.setAttribute('data-src-loading','1');
         }
       });
