@@ -150,6 +150,7 @@ async function switchAnimMedia(){
    elementVideoPlayer.querySelector('source').setAttribute('src', dataSrc);
    elementVideoPlayer.load();
  }else{
+   elementVideoPlayer.pause();
    elementVideoPlayer.style.display = 'none';
    elementImage.style.display = 'block';
    elementImage.setAttribute('src', dataSrc);
