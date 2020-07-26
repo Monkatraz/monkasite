@@ -10,6 +10,15 @@ function setClass(id, className){
   getElement(id).className = className;
 }
 
+function waitFor(conditionFunction) {
+  const poll = resolve => {
+    if(conditionFunction()) resolve();
+    else setTimeout(_ => poll(resolve), 400);
+  }
+
+  return new Promise(poll);
+}
+
 // DOM loaded
 document.addEventListener('DOMContentLoaded', function() {
     // If we came in from a different URL (redirect)
@@ -41,6 +50,7 @@ function onPageContentLoad() {
         let response = await fetch(dataSrc);
         if(response.ok){
           this.setAttribute('src', dataSrc);
+          await waitFor(_ => this.complete == true);
           this.setAttribute('data-src-loading','1');
         }
       }
