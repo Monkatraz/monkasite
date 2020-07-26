@@ -16,7 +16,15 @@
 // Keyframes for a keyboard accessibility trick with the nav buttons
 // Select box-shadow will pop up for a moment if focused
 // This animation is designed to blend in with clicking
-
+@keyframes nav_link_focus
+  0%
+    // Putting nothing here - just need this for the parser
+  50%
+    box-shadow: inset 0em -3em 0px rgba(255,255,255, 0.2)
+  60%
+    // Parser indent!
+  100%
+    // Parser indent!
 
 #header .nav_link
   position: relative

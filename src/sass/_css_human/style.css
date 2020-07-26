@@ -156,6 +156,20 @@ p {
   padding-left: 5%;
   text-align: center; }
 
+@-webkit-keyframes nav_link_focus {
+  0% { }
+  50% {
+    box-shadow: inset 0em -3em 0px rgba(255, 255, 255, 0.2); }
+  60% { }
+  100% { } }
+
+@keyframes nav_link_focus {
+  0% { }
+  50% {
+    box-shadow: inset 0em -3em 0px rgba(255, 255, 255, 0.2); }
+  60% { }
+  100% { } }
+
 #header .nav_link {
   position: relative;
   display: inline-block;
