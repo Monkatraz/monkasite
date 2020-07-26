@@ -35,10 +35,14 @@ function onPageContentLoad() {
   setTimeout(function(){ container.className = 'pg-loaded' }, 50);
   // Replace our crappy images with the correct ones
   container.querySelectorAll('img').forEach(img => {
-    img.addEventListener('load', function(){
+    img.addEventListener('load', async function(){
+      const dataSrc = this.getAttribute('data-src')
       if(this.getAttribute('data-src')) {
-        this.onLoad = function(){this.setAttribute('data-src-loading','1')}
-        this.setAttribute('src',this.getAttribute('data-src'));
+        let response = await fetch(dataSrc);
+        if(response.ok){
+          this.setAttribute('src', dataSrc);
+          this.setAttribute('data-src-loading','1');
+        }
       }
     });
   });

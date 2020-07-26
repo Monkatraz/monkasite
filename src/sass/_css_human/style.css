@@ -1029,8 +1029,8 @@ li {
             filter: blur(0); } }
 
 img[data-src] {
-  -webkit-filter: blur(5px);
-          filter: blur(5px); }
+  -webkit-filter: blur(3px);
+          filter: blur(3px); }
 
 img[data-src-loading] {
   -webkit-animation: lqp-deblur 0.5s 1 forwards;
